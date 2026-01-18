@@ -1,8 +1,15 @@
-const API_KEY = "yourapi_key_here"
+function onOpen() {
+  SpreadsheetApp.getUi()
+    .createMenu('ElevenLabs TTS')
+    .addItem('Generate Voices', 'generateVoicesFromSheet')
+    .addToUi();
+}
+
+const API_KEY = "your_api_key"
 const MODEL_ID = "eleven_multilingual_v2"; 
 const OUTPUT_FOLDER_NAME = "ElevenLabs_MP3s"
 
--
+
 function generateVoicesFromSheet() {
   
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
@@ -17,7 +24,7 @@ function generateVoicesFromSheet() {
     return;
   }
 
-  
+   
   let folderIter = DriveApp.getFoldersByName(OUTPUT_FOLDER_NAME);
   let folder = folderIter.hasNext() ? folderIter.next() : DriveApp.createFolder(OUTPUT_FOLDER_NAME);
 
